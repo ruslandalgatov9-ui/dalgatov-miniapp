@@ -1,0 +1,89 @@
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+
+from database import init_db, save_lead
+app = Flask(__name__)
+CORS(app)
+
+init_db()
+
+
+@app.route("/")
+def home():
+    return jsonify({
+        "status": "Dalgatov Mini App работает 🚀"
+    })
+
+
+@app.route("/api/services")
+def services():
+    return jsonify([
+        {
+            "icon": "🤖",
+            "title": "AI-контент",
+            "description": "Создание идей, текстов и визуалов с помощью AI"
+        },
+        {
+            "icon": "📱",
+            "title": "SMM",
+            "description": "Контент, оформление и продвижение социальных сетей"
+        },
+        {
+            "icon": "🎨",
+            "title": "Дизайн",
+            "description": "Создание визуалов и рекламных материалов"
+        }
+    ])
+
+
+@app.route("/api/portfolio")
+def portfolio():
+    return jsonify([
+        {
+            "icon": "☕",
+            "title": "От кофе к цифровым навыкам",
+            "description": "История развития Dalgatov.pro"
+        },
+        {
+            "icon": "🚀",
+            "title": "AI проекты",
+            "description": "Создание цифровых решений с нейросетями"
+        }
+    ])
+
+
+@app.route("/api/ask", methods=["POST"])
+def ask():
+
+    data = request.json
+
+    question = data.get("question", "")
+
+    return jsonify({
+        "answer": f"AI получил вопрос: {question}"
+    })
+
+
+@app.route("/api/lead", methods=["POST"])
+def lead():
+
+    data = request.json
+
+    save_lead(
+        data.get("user_id"),
+        data.get("name"),
+        data.get("contact"),
+        data.get("message")
+    )
+
+    return jsonify({
+        "success": True,
+        "message": "Заявка сохранена"
+    })
+
+
+if __name__ == "__main__":
+    app.run(
+        host="0.0.0.0",
+        port=5000
+    )
