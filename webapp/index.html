@@ -2,6 +2,7 @@
 <html lang="ru">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -20,7 +21,9 @@
 <div id="app">
 
 
-<section class="screen active">
+<!-- ГЛАВНАЯ -->
+
+<section class="screen active" id="screen-home">
 
 
 <div class="hero">
@@ -50,32 +53,38 @@ AI • Контент • Дизайн • Автоматизация
 <div class="quick-cards">
 
 
-<button class="quick-card">
+<button class="quick-card" data-target="ai">
+
 <span class="quick-icon">
 🤖
 </span>
 
 AI помощник
+
 </button>
 
 
 
 <button class="quick-card">
+
 <span class="quick-icon">
 🎨
 </span>
 
 Создать контент
+
 </button>
 
 
 
 <button class="quick-card">
+
 <span class="quick-icon">
 📚
 </span>
 
 Материалы
+
 </button>
 
 
@@ -83,7 +92,9 @@ AI помощник
 
 
 
+
 <div class="info-card">
+
 
 <div class="info-card-icon">
 🚀
@@ -104,6 +115,7 @@ AI помощник
 
 
 
+
 <button class="btn-primary">
 Начать работу
 </button>
@@ -112,43 +124,254 @@ AI помощник
 </section>
 
 
+
+
+
+<!-- AI ПОМОЩНИК -->
+
+
+<section class="screen" id="screen-ai">
+
+
+<h2 class="screen-title">
+🤖 AI Помощник
+</h2>
+
+
+
+<div class="ai-chat">
+
+
+<div class="ai-msg bot">
+
+Ассаляму алейкум 👋
+<br><br>
+
+Я AI-помощник Dalgatov.pro.
+<br>
+
+Помогу с идеями, контентом, дизайном и цифровыми навыками.
+
+</div>
+
+
 </div>
 
 
 
+
+<div class="ai-input-row">
+
+
+<input
+type="text"
+placeholder="Напиши свой вопрос..."
+>
+
+
+
+<button>
+➤
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- STUDIO -->
+
+
+<section class="screen" id="screen-studio">
+
+
+<h2 class="screen-title">
+🎨 Studio
+</h2>
+
+
+<div class="info-card">
+
+<div class="info-card-icon">
+✨
+</div>
+
+
+<div class="info-card-title">
+AI Создание контента
+</div>
+
+
+<div class="info-card-desc">
+Генерация идей, дизайн, видео и рекламные материалы.
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- МАТЕРИАЛЫ -->
+
+
+<section class="screen" id="screen-materials">
+
+
+<h2 class="screen-title">
+📚 Материалы
+</h2>
+
+
+<div class="info-card">
+
+
+<div class="info-card-title">
+База знаний
+</div>
+
+
+<div class="info-card-desc">
+Здесь будут уроки, инструкции и полезные материалы.
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- ПРОФИЛЬ -->
+
+
+<section class="screen" id="screen-profile">
+
+
+<h2 class="screen-title">
+👤 Профиль
+</h2>
+
+
+<div class="profile-card">
+
+
+<div class="profile-avatar">
+?
+</div>
+
+
+<div class="profile-name">
+Гость
+</div>
+
+
+<div class="profile-username">
+Открой приложение через Telegram
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+</div>
+
+
+
+
+
+<!-- НИЖНЕЕ МЕНЮ -->
+
+
 <nav id="bottom-nav">
 
-<button class="nav-btn active">
+
+<button class="nav-btn active" data-target="home">
+
 🏠
-<span>Главная</span>
+<span>
+Главная
+</span>
+
 </button>
 
 
-<button class="nav-btn">
+
+
+<button class="nav-btn" data-target="ai">
+
 🤖
-<span>AI</span>
+<span>
+AI
+</span>
+
 </button>
 
 
-<button class="nav-btn">
+
+
+
+<button class="nav-btn" data-target="studio">
+
 🎨
-<span>Studio</span>
+<span>
+Studio
+</span>
+
 </button>
 
 
-<button class="nav-btn">
+
+
+
+<button class="nav-btn" data-target="materials">
+
 📚
-<span>Материалы</span>
+<span>
+Материалы
+</span>
+
 </button>
 
 
-<button class="nav-btn">
+
+
+
+<button class="nav-btn" data-target="profile">
+
 👤
-<span>Профиль</span>
+<span>
+Профиль
+</span>
+
 </button>
+
 
 
 </nav>
+
+
+
+
+
+<script src="script.js"></script>
+
 
 </body>
 
