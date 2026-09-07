@@ -4,13 +4,17 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Dalgatov.pro AI</title>
 
+
 <link rel="stylesheet" href="style.css">
 
+
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
 
 </head>
 
@@ -40,9 +44,13 @@ Dalgatov.pro
 
 
 <p class="hero-subtitle">
+
 От кофе к цифровым навыкам
+
 <br>
+
 AI • Контент • Дизайн • Автоматизация
+
 </p>
 
 
@@ -102,12 +110,16 @@ AI помощник
 
 
 <div class="info-card-title">
+
 Добро пожаловать
+
 </div>
 
 
 <div class="info-card-desc">
+
 Здесь будут AI-инструменты, обучение, проекты и полезные материалы.
+
 </div>
 
 
@@ -117,7 +129,9 @@ AI помощник
 
 
 <button class="btn-primary" data-target="ai">
+
 Начать работу
+
 </button>
 
 
@@ -127,14 +141,15 @@ AI помощник
 
 
 
-<!-- AI ПОМОЩНИК -->
-
+<!-- AI -->
 
 <section class="screen" id="screen-ai">
 
 
 <h2 class="screen-title">
+
 🤖 AI Помощник
+
 </h2>
 
 
@@ -145,13 +160,34 @@ AI помощник
 <div class="ai-msg bot">
 
 Ассаляму алейкум 👋
+
 <br><br>
 
 Я AI-помощник Dalgatov.pro.
 
+<br><br>
+
+Помогу с:
+
 <br>
 
-Помогу с AI-инструментами, SMM, дизайном, контентом и цифровыми навыками.
+🤖 AI
+
+<br>
+
+📱 SMM
+
+<br>
+
+🎨 Дизайн
+
+<br>
+
+🚀 Личный бренд
+
+<br>
+
+💻 Цифровые навыки
 
 </div>
 
@@ -165,14 +201,18 @@ AI помощник
 
 
 <input
+
 type="text"
+
 placeholder="Напиши свой вопрос..."
+
 >
 
 
-
 <button>
+
 ➤
+
 </button>
 
 
@@ -185,31 +225,41 @@ placeholder="Напиши свой вопрос..."
 
 
 
-<!-- STUDIO -->
 
+<!-- STUDIO -->
 
 <section class="screen" id="screen-studio">
 
 
 <h2 class="screen-title">
+
 🎨 Studio
+
 </h2>
+
 
 
 <div class="info-card">
 
+
 <div class="info-card-icon">
+
 ✨
+
 </div>
 
 
 <div class="info-card-title">
+
 AI Создание контента
+
 </div>
 
 
 <div class="info-card-desc">
-Генерация идей, дизайн, видео и рекламные материалы.
+
+Генерация идей, дизайн, видео, изображения и рекламные материалы.
+
 </div>
 
 
@@ -222,27 +272,34 @@ AI Создание контента
 
 
 
-<!-- МАТЕРИАЛЫ -->
 
+<!-- MATERIALS -->
 
 <section class="screen" id="screen-materials">
 
 
 <h2 class="screen-title">
+
 📚 Материалы
+
 </h2>
+
 
 
 <div class="info-card">
 
 
 <div class="info-card-title">
+
 База знаний
+
 </div>
 
 
 <div class="info-card-desc">
-Здесь будут уроки, инструкции и полезные материалы.
+
+Уроки, инструкции и полезные материалы.
+
 </div>
 
 
@@ -255,33 +312,45 @@ AI Создание контента
 
 
 
-<!-- ПРОФИЛЬ -->
 
+<!-- PROFILE -->
 
 <section class="screen" id="screen-profile">
 
 
 <h2 class="screen-title">
+
 👤 Профиль
+
 </h2>
+
 
 
 <div class="profile-card">
 
 
 <div class="profile-avatar">
+
 ?
+
 </div>
+
 
 
 <div class="profile-name">
+
 Гость
+
 </div>
+
 
 
 <div class="profile-username">
+
 Открой приложение через Telegram
+
 </div>
+
 
 
 </div>
@@ -291,23 +360,30 @@ AI Создание контента
 
 
 
+
+
 </div>
 
 
 
 
 
-<!-- НИЖНЕЕ МЕНЮ -->
+
+<!-- MENU -->
 
 
 <nav id="bottom-nav">
 
 
+
 <button class="nav-btn active" data-target="home">
 
 🏠
+
 <span>
+
 Главная
+
 </span>
 
 </button>
@@ -318,8 +394,11 @@ AI Создание контента
 <button class="nav-btn" data-target="ai">
 
 🤖
+
 <span>
+
 AI
+
 </span>
 
 </button>
@@ -331,8 +410,11 @@ AI
 <button class="nav-btn" data-target="studio">
 
 🎨
+
 <span>
+
 Studio
+
 </span>
 
 </button>
@@ -344,8 +426,11 @@ Studio
 <button class="nav-btn" data-target="materials">
 
 📚
+
 <span>
+
 Материалы
+
 </span>
 
 </button>
@@ -357,8 +442,11 @@ Studio
 <button class="nav-btn" data-target="profile">
 
 👤
+
 <span>
+
 Профиль
+
 </span>
 
 </button>
@@ -370,11 +458,11 @@ Studio
 
 
 
-
 <script src="script.js"></script>
+
 
 
 </body>
 
-</html>
 
+</html>

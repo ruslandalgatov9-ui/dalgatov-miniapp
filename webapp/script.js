@@ -39,7 +39,6 @@ function showScreen(name) {
 }
 
 
-
 // Кнопки меню
 
 buttons.forEach(button => {
@@ -51,7 +50,6 @@ buttons.forEach(button => {
     });
 
 });
-
 
 
 // Верхние кнопки
@@ -66,7 +64,6 @@ document.querySelectorAll("[data-target]")
     });
 
 });
-
 
 
 // Telegram пользователь
@@ -88,7 +85,6 @@ function getUser(){
 }
 
 
-
 // Профиль
 
 const user = getUser();
@@ -100,7 +96,6 @@ if(user){
 }
 
 
-
 // AI сообщение
 
 const aiButton = document.querySelector(".ai-input-row button");
@@ -110,51 +105,107 @@ const chat = document.querySelector(".ai-chat");
 
 if(aiButton){
 
-aiButton.addEventListener("click",()=>{
+    aiButton.addEventListener("click", async ()=>{
+
+        const text = aiInput.value.trim();
+
+        if(!text) return;
 
 
-    const text = aiInput.value.trim();
+        // Сообщение пользователя
+
+        const message = document.createElement("div");
+
+        message.className = "ai-msg user";
+
+        message.textContent = text;
+
+        chat.appendChild(message);
 
 
-    if(!text) return;
+        aiInput.value = "";
 
 
-    const message = document.createElement("div");
+        // Индикатор загрузки
 
-    message.className="ai-msg user";
+        const loading = document.createElement("div");
 
-    message.textContent=text;
+        loading.className = "ai-msg bot";
 
+        loading.textContent = "Думаю... 🤔";
 
-    chat.appendChild(message);
-
-
-    aiInput.value="";
+        chat.appendChild(loading);
 
 
-    setTimeout(()=>{
+        try {
 
+            // Отправляем вопрос на Flask → Gemini
 
-        const answer=document.createElement("div");
+const response = await fetch("/api/ask", {
 
-        answer.className="ai-msg bot";
+    method: "POST",
 
-        answer.textContent=
-        "Сейчас я обучаюсь. Скоро помогу с AI, контентом и цифровыми навыками 🚀";
+    headers: {
+        "Content-Type": "application/json"
+    },
 
+    body: JSON.stringify({
 
-        chat.appendChild(answer);
+        question: text,
 
+        telegram_id: user ? user.id : "guest",
 
-    },700);
+        username: user ? user.username : "guest"
 
-
+    })
 
 });
 
 
-}
+const data = await response.json();
 
+console.log("Ответ Flask:", data);
+
+            // Удаляем "Думаю..."
+
+            loading.remove();
+
+
+            // Ответ AI
+
+            const answer = document.createElement("div");
+
+            answer.className = "ai-msg bot";
+
+            answer.textContent =
+                data.answer || "Не удалось получить ответ от AI.";
+
+
+            chat.appendChild(answer);
+
+
+        } catch(error) {
+
+            loading.remove();
+
+
+            const answer = document.createElement("div");
+
+            answer.className = "ai-msg bot";
+
+            answer.textContent =
+                "Не удалось связаться с AI. Попробуй ещё раз.";
+
+            chat.appendChild(answer);
+
+
+            console.error("AI error:", error);
+
+        }
+
+    });
+
+}
 
 
 // Старт

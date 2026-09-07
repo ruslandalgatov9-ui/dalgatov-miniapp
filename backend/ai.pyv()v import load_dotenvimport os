@@ -1,0 +1,53 @@
+	
+
+
+def ask_ai(question):
+
+    url = (
+        "https://generativelanguage.googleapis.com/v1beta/"
+        "models/gemini-2.5-pro:generateContent"
+        f"?key={API_KEY}"
+    )
+
+    data = {
+        "contents": [
+            {
+                "parts": [
+                    {
+                        "text": f"""
+Ты AI-консультант Dalgatov.pro.
+
+Помогаешь по темам:
+- AI инструменты
+- создание контента
+- SMM
+- дизайн
+- Telegram Mini Apps
+- цифровые навыки
+
+Вопрос пользователя:
+{question}
+"""
+                    }
+                ]
+            }
+        ]
+    }
+
+    response = requests.post(
+        url,
+        json=data
+    )
+
+    result = response.json()
+
+    print(result)
+
+    if "candidates" not in result:
+        return f"Ошибка Gemini: {result}"
+
+    return (
+        result["candidates"][0]
+        ["content"]["parts"][0]
+        ["text"]
+    )

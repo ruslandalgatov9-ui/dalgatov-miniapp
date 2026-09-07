@@ -1,5 +1,6 @@
 import sqlite3
 
+
 DB_PATH = "dalgatov.db"
 
 
@@ -7,9 +8,11 @@ def get_connection():
     return sqlite3.connect(DB_PATH)
 
 
+
 def init_db():
     conn = get_connection()
     cursor = conn.cursor()
+
 
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS users (
@@ -19,6 +22,7 @@ def init_db():
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
     """)
+
 
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS leads (
@@ -31,6 +35,7 @@ def init_db():
     )
     """)
 
+
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS ai_history (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -41,20 +46,71 @@ def init_db():
     )
     """)
 
+
     conn.commit()
     conn.close()
 
 
+
 def save_lead(telegram_id, name, contact, message):
+
     conn = get_connection()
     cursor = conn.cursor()
+
 
     cursor.execute("""
     INSERT INTO leads
     (telegram_id, name, contact, message)
     VALUES (?, ?, ?, ?)
     """,
-    (telegram_id, name, contact, message))
+    (
+        telegram_id,
+        name,
+        contact,
+        message
+    ))
+
+
+    conn.commit()
+    conn.close()
+
+
+
+def save_user(telegram_id, username):
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    INSERT INTO users
+    (telegram_id, username)
+    VALUES (?, ?)
+    """,
+    (
+        telegram_id,
+        username
+    ))
+
+    conn.commit()
+    conn.close()
+
+
+
+def save_ai_history(telegram_id, question, answer):
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    INSERT INTO ai_history
+    (telegram_id, question, answer)
+    VALUES (?, ?, ?)
+    """,
+    (
+        telegram_id,
+        question,
+        answer
+    ))
 
     conn.commit()
     conn.close()

@@ -1,196 +1,99 @@
-from pathlib import Path
-
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
-from database import (
-    init_db,
-    save_lead,
-    save_user,
-    save_ai_history
-)
-
+from database import init_db, save_lead
 from ai import ask_ai
-
-
-# Корень проекта
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-WEBAPP_DIR = BASE_DIR / "webapp"
-
-
 app = Flask(__name__)
-
 CORS(app)
-
-
-# Создание таблиц
 
 init_db()
 
 
-
-# =========================
-# MINI APP
-# =========================
-
-
 @app.route("/")
 def home():
-
-    return send_from_directory(
-        WEBAPP_DIR,
-        "index.html"
-    )
-
-
-
-@app.route("/<path:filename>")
-def webapp_files(filename):
-
-    return send_from_directory(
-        WEBAPP_DIR,
-        filename
-    )
-
-
-
-# =========================
-# SERVICES
-# =========================
+    return jsonify({
+        "status": "Dalgatov Mini App работает 🚀"
+    })
 
 
 @app.route("/api/services")
 def services():
-
     return jsonify([
-
         {
             "icon": "🤖",
             "title": "AI-контент",
             "description": "Создание идей, текстов и визуалов с помощью AI"
         },
-
         {
             "icon": "📱",
             "title": "SMM",
             "description": "Контент, оформление и продвижение социальных сетей"
         },
-
         {
             "icon": "🎨",
             "title": "Дизайн",
             "description": "Создание визуалов и рекламных материалов"
         }
-
     ])
 
 
-
-
-# =========================
-# AI ASSISTANT
-# =========================
+@app.route("/api/portfolio")
+def portfolio():
+    return jsonify([
+        {
+            "icon": "☕",
+            "title": "От кофе к цифровым навыкам",
+            "description": "История развития Dalgatov.pro"
+        },
+        {
+            "icon": "🚀",
+            "title": "AI проекты",
+            "description": "Создание цифровых решений с нейросетями"
+        }
+    ])
 
 
 @app.route("/api/ask", methods=["POST"])
 def ask():
 
-    data = request.get_json(silent=True) or {}
+    data = request.json
 
-    question = data.get(
-        "question",
-        ""
-    ).strip()
-
-
-    if not question:
-
-        return jsonify({
-
-            "answer": "Напиши вопрос."
-
-        }), 400
-
-
+    question = data.get("question", "")
 
     try:
-
         answer = ask_ai(question)
 
-
-        # Сохраняем историю AI
-
-        save_ai_history(
-            "guest",
-            question,
-            answer
-        )
-
-
         return jsonify({
-
             "answer": answer
-
         })
 
-
     except Exception as e:
-
-
         return jsonify({
-
             "answer": f"Ошибка AI: {str(e)}"
+        })
 
-        }), 500
-
-
-
-
-# =========================
-# LEADS
-# =========================
 
 
 @app.route("/api/lead", methods=["POST"])
 def lead():
 
-    data = request.get_json(silent=True) or {}
-
+    data = request.json
 
     save_lead(
-
-        data.get("telegram_id"),
+        data.get("user_id"),
         data.get("name"),
         data.get("contact"),
         data.get("message")
-
     )
 
-
     return jsonify({
-
         "success": True,
-
         "message": "Заявка сохранена"
-
     })
 
 
-
-
-
-# =========================
-# START
-# =========================
-
-
 if __name__ == "__main__":
-
     app.run(
-
         host="0.0.0.0",
-
         port=5000
-
     )
